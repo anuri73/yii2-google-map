@@ -24,7 +24,7 @@ use yii\web\JsExpression;
 class Widget extends BaseWidget
 {
     #region Options
-    public $template = "{beginContainer} {searchInput} {lat} {lon} {map} {endContainer}";
+    public $template = "{beginContainer} {searchInput} {navigator} {lat} {lon} {map} {endContainer}";
     /**
      * @var null|Callable
      */
@@ -46,6 +46,7 @@ class Widget extends BaseWidget
     {
         $content = $this->wrapContainer($this->template);
         $content = $this->wrapSearchInput($content);
+        $content = $this->wrapNavigator($content);
         $content = $this->wrapMap($content);
         $content = $this->renderHiddenInputs($content);
         $this->registerPlugin();
@@ -166,6 +167,39 @@ class Widget extends BaseWidget
     }
 
     /**
+     * Wrap navigator
+     * @param string $content
+     * @return string
+     */
+    protected function wrapNavigator(string $content = "")
+    {
+        $options = ArrayHelper::remove($this->_options, 'navigator', []);
+        $class = ArrayHelper::remove($options, 'class', "");
+        if (!strpos($class, "map-navigator")) {
+            $class = implode(" ", array_filter([
+                $class,
+                "map-navigator"
+            ]));
+        }
+        $options['class'] = $class;
+        $tag = ArrayHelper::remove($options, 'tag', 'a');
+        $label = ArrayHelper::remove($options, 'label', 'My position');
+        $this->view->registerJs("
+            $(\".map-navigator\").click(function () {
+                navigator.geolocation.getCurrentPosition(function (\$position) {
+                    $(\"#{$this->id}-map\").locationpicker(\"location\", {
+                        latitude: \$position.coords.latitude,
+                        longitude: \$position.coords.longitude
+                    });
+                });
+            });
+        ");
+        return strtr($content, [
+            '{navigator}' => Html::tag($tag, $label, $options),
+        ]);
+    }
+
+    /**
      * Wrap map box
      * @param string $content
      * @return string
@@ -230,7 +264,7 @@ class Widget extends BaseWidget
      */
     protected function registerPlugin()
     {
-        return $this->view->registerJs("$('#{$this->id}-map').locationpicker(" . Json::encode($this->pluginOptions) . ");");
+        $this->view->registerJs("$('#{$this->id}-map').locationpicker(" . Json::encode($this->pluginOptions) . ");");
     }
     #endregion
 }
