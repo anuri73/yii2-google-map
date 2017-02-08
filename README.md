@@ -1,6 +1,9 @@
 # sonkei/google-map
 Yii2 implementation of google map
 
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Creative Commons License](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
+
 `sonkei/google-map` is designed to work out of the box. It means that installation requires minimal steps. Only one configuration step should be taken and you are ready to have google map on your Yii2 website.
 
 ## Installation:
