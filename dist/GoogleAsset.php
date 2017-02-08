@@ -43,24 +43,10 @@ class GoogleAsset extends AssetBundle
      */
     public $options = [];
 
-    /**
-     * @inheritdoc
-     */
+    /** @inheritdoc */
     public function init()
     {
-        // BACKWARD COMPATIBILITY
-        // To configure please, add `googleMapsApiKey` parameter to your application configuration
-        // file with the value of your API key. To get yours, please visit https://code.google.com/apis/console/.
-        $key = @Yii::$app->params['googleMapsApiKey'];
-        // To configure please, add `googleMapsLibraries` parameter to your application configuration
-        $libraries = @Yii::$app->params['googleMapsLibraries'];
-        // To configure please, add `googleMapsLanguage` parameter to your application configuration
-        $language = @Yii::$app->params['googleMapsLanguage'];
-        $this->options = ArrayHelper::merge($this->options, array_filter([
-            'key' => $key,
-            'libraries' => $libraries,
-            'language' => $language
-        ]));
+        $this->options = ArrayHelper::merge($this->options, array_filter(ArrayHelper::getValue(Yii::$app->params, 'gmap', [])));
         // BACKWARD COMPATIBILITY
         $this->js[] = 'https://maps.googleapis.com/maps/api/js?' . http_build_query($this->options);
     }
