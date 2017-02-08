@@ -8,8 +8,3 @@
 
 - [Installation](installation.md)
 - [Configuration](configuration.md)
-- [List of available actions](available-actions.md)
-- [Troubleshooting](troubleshooting.md)
-- [Usage with Yii2 advanced template](usage-with-advanced-template.md)
-- [Console commands](console.md)
-- [F.A.Q.](faq.md)
