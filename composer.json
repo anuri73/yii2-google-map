@@ -27,11 +27,10 @@
   },
   "require-dependencies": true,
   "require": {
-
   },
   "autoload": {
     "psr-4": {
-      "sonkei\\widgets\\google-map\\dist\\": "sonkei/gmap"
+      "sonkei/gmap": "dist"
     }
   }
 }
