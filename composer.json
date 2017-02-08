@@ -30,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "sonkei/gmap": "dist"
+      "sonkei\\gmap\\": "dist"
     }
   }
 }
