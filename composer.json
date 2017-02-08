@@ -1,0 +1,37 @@
+{
+  "name": "sonkei/google-map",
+  "description": "Yii2 implementation of google map",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii",
+    "extension",
+    "widget",
+    "yii2",
+    "yii 2",
+    "google",
+    "map"
+  ],
+  "homepage": "https://github.com/urma94/yii2-google-map",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Urmat Zhenaliev",
+      "email": "sonkei@ya.ru",
+      "homepage": "http://prosoft.kg",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/urma94/yii2-google-map/issues",
+    "source": "https://github.com/urma94/yii2-google-map"
+  },
+  "require-dependencies": true,
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "sonkei\\widgets\\google-map\\dist\\": "sonkei/gmap/"
+    }
+  }
+}
