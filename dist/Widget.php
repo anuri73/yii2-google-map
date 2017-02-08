@@ -77,7 +77,8 @@ class Widget extends BaseWidget
         'searchInput' => [
             'labelOptions' => [
                 'label' => 'Location: '
-            ]
+            ],
+            'class' => 'form-control',
         ],
         'map' => [
             'class' => 'map-box'
